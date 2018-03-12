@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+
+<!DOCTYPE html>
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/components-font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/content/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <a asp-controller="Home" asp-action="Index" class="navbar-brand">Ricky's Rocks</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a asp-controller="Shop" asp-action="Index" class="nav-link">Shop</a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Contact" asp-action="Index" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Hi @UserManager.GetUserName(User)!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                    </li>
+                    @await Component.InvokeAsync("ShoppingCartSummary")
+                </ul>
+            </form>
+
+        }
+        else
+        {
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Login" class="nav-link">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Register" class="nav-link">Register</a>
+                </li>
+                @await Component.InvokeAsync("ShoppingCartSummary")
+            </ul>
+        }
+
+    </nav>
+    <br />
+    <br />
+    
+    @RenderBody()
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

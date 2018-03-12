@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Rock>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 display-4">Rocks Of The Week</div>
+    </div>
+</div>
+<div class="container testimonial-group">
+    <div class="row col-12">
+        @foreach (var rock in Model)
+        {
+            <div class="col-4">
+                @Html.Partial("RockCard", rock)
+            </div>
+        }
+
+    </div>
+</div>

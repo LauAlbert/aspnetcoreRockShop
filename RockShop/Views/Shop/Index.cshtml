@@ -1,0 +1,52 @@
+﻿@model ShopViewModel
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <span>Sort Item By</span>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name</a>
+                    @if (string.IsNullOrEmpty(Model.sortOrder))
+                    {
+                        <i class="fa fa-caret-up"></i>
+                    }
+                    else if (Model.sortOrder == "name_desc")
+                    {
+                        <i class="fa fa-caret-down"></i>
+
+                    }
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParm"]">Price</a>
+                    @if (Model.sortOrder == "Price")
+                    {
+                        <i class="fa fa-caret-up"></i>
+                    }
+                    else if (Model.sortOrder == "price_desc")
+                    {
+                        <i class="fa fa-caret-down"></i>
+
+                    }
+                </li>
+            </ul>
+            
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var rock in Model.Rocks)
+                {
+                    <div class="col-sm-6 col-lg-4 col-md-6 pb-4">
+                        @Html.Partial("RockCard", rock)
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

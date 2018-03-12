@@ -1,0 +1,26 @@
+﻿@model RockListViewModel
+
+
+<div class="container">
+    <div class="row">
+        @Html.Partial("RockCarousel")
+    </div>
+</div>
+<br />
+@Html.Partial("RockOfTheWeek", Model.RockofTheWeek)
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 display-4">Store</div>
+    </div>
+    <div class="row">
+        @foreach (var rock in Model.Rocks)
+        {
+            <div class="col-sm-6 col-lg-4 col-md-6 pb-4">
+                @Html.Partial("RockCard", rock)
+
+            </div>
+        }
+    </div>
+</div>

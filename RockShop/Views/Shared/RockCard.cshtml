@@ -1,0 +1,13 @@
+﻿@model Rock
+
+<div class="card">
+    <img class="card-img-top" src="@Model.ImageThumbnailUrl" alt="@Model.Name" />
+    <div class="card-block p-4">
+        <h4 class="card-title">
+            <a asp-controller="Home" asp-action="Detail" asp-route-id="@Model.Id">@Model.Name</a>
+        </h4>
+        <h5 class="card-title float-right">@Model.Price.ToString("c")</h5>
+        <p class="card-text">@Model.ShortDescription</p>
+        <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-Id="@Model.Id" class="btn btn-primary">Add To Cart</a>
+    </div>
+</div>

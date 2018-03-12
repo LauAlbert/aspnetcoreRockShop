@@ -1,0 +1,19 @@
+﻿.testimonial-group > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: inline-block;
+
+}
+
+.testimonial-group > .row > .col-4 {
+    display: inline-block;
+    float: none;
+    font-size: 10px;
+}
+
+
+
+::-webkit-scrollbar {
+    display: none;
+}
+

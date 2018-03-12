@@ -1,0 +1,27 @@
+﻿@model LoginViewModel
+
+
+<div class="container">
+    <br />
+    <h4>Login</h4>
+    <br />
+    <form asp-controller="Account" asp-action="Login" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <br />
+    <p>Don't have a account?</p>
+    <a asp-controller="Account" asp-action="Register">Click here to register</a>
+</div>
+
+        
