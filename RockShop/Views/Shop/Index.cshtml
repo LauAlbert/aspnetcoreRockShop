@@ -44,6 +44,76 @@
                 }
 
             </div>
+            <div class="row">
+                @{
+                    var prevDisabled = !Model.Rocks.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.Rocks.HasNextPage ? "disabled" : "";
+                }
+
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item @prevDisabled">
+                            <a class="page-link"
+                               aria-label="First"
+                               asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-page=1
+                               >
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">First</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item @prevDisabled">
+                            <a  class="page-link"
+                                aria-label="Previous"
+                                asp-action="Index"
+                                asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                asp-route-page="@(Model.Rocks.PageIndex - 1)">
+
+                                    <span aria-hidden="true">&lsaquo;</span>
+                                    <span class="sr-only">Previous</span>
+                            </a>
+
+                        </li>
+
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0);">
+                                @Model.Rocks.PageIndex 
+                                <span class="sr-only">(Current)</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item @nextDisabled">
+                            <a class="page-link"
+                               aria-label="Next"
+                               asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-page="@(Model.Rocks.PageIndex + 1)"
+                               >
+
+                                    <span aria-hidden="true">&rsaquo;</span>
+                                    <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+
+                        
+                        <li class="page-item @nextDisabled">
+                            <a class="page-link"
+                               aria-label="Last"
+                               asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-page="@Model.Rocks.TotalPages"
+                               >
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Last</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
 
         </div>
 

@@ -17,10 +17,11 @@ namespace RockShop.Controllers
         {
             _rockRepository = rockRepository;
         }
-        public IActionResult Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, int? page)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["CurrentSort"] = sortOrder;
 
             var Rocks = _rockRepository.GetRocks().AsQueryable();
 
@@ -41,9 +42,11 @@ namespace RockShop.Controllers
                 
             }
 
+            int pageSize = 4;
+
             ShopViewModel results = new ShopViewModel
             {
-                Rocks = Rocks.ToList(),
+                Rocks = await PaginatedList<Rock>.CreateAsync(Rocks, page ?? 1, pageSize),
                 sortOrder = sortOrder
             };
 

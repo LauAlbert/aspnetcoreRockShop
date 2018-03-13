@@ -8,7 +8,7 @@ namespace RockShop.ViewModels
 {
     public class ShopViewModel
     {
-        public IEnumerable<Rock> Rocks { get; set; }
+        public PaginatedList<Rock> Rocks { get; set; }
         public string sortOrder { get; set; }
     }
 }
