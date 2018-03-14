@@ -26,5 +26,15 @@ namespace RockShop.Models
         {
             return _appDbContext.Rocks;
         }
+        public void AddRock(Rock rock)
+        {
+            rock.DateTime = DateTime.Now;
+            _appDbContext.Rocks.Add(rock);
+        }
+        public async Task<bool> Save()
+        {
+            var changes = await _appDbContext.SaveChangesAsync();
+            return (changes > 0);
+        }
     }
 }

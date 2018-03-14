@@ -10,5 +10,7 @@ namespace RockShop.Models
         IEnumerable<Rock> GetRocks();
         IEnumerable<Rock> GetRockOfTheWeek();
         Rock GetRock(int id);
+        void AddRock(Rock rock);
+        Task<bool> Save();
     }
 }

@@ -16,5 +16,6 @@ namespace RockShop.Models
         public string ImageThumbnailUrl { get; set; }
         public decimal Price { get; set; }
         public bool RockOfTheWeek { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }
